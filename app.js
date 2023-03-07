@@ -100,7 +100,7 @@ let hourlyTraffic = {
 };
 
 
-// dont delete
+
 let trafficOptions = {
     maintainAspectRatio: false,
     backgroundColor: 'rgba(112, 104, 201, .5)',
@@ -251,11 +251,6 @@ monthly.addEventListener('click', (e) => {
 
 
 
-// // let trafficChart = new Chart(trafficCanvas, {
-//     type:'line',
-//     data: trafficData,
-//     options: trafficOptions
-// })
 
 // ---------- Daily chart ----------
 const dailyCanvas = document.getElementById('daily-chart');
