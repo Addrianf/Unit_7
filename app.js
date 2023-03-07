@@ -288,6 +288,7 @@ let dailyChart = new Chart(dailyCanvas, {
     data: dailyData,
     options: dailyOptions
 });
+
 // ---------- mobile chart ----------
 const mobileCanvas = document.getElementById('mobile-chart');
 
@@ -306,36 +307,135 @@ const mobileData = {
 }
 
 const mobileOptions = {
-    maintainAspectRatio: false,
+    aspectRatio: 2,
     plugins: {
         legend: {
             position: 'right',
             labels: {
                 boxWidth: 20,
-                fontStyle:'bold'
+                fontStyle: 'bold'
             }
         }
     }
-};
-let mobileChart = new Chart(mobileCanvas, {
+ };
+
+ let mobileChart = new Chart(mobileCanvas, {
     type: 'doughnut',
     data: mobileData,
     options: mobileOptions
-});
+ });
+
 
 // ------------------ messaging section ------------------
 const user = document.getElementById('userField');
 const message = document.getElementById('messageField');
 const send = document.getElementById('send');
 
-send.addEventListener('click', () => {
-    if ( user.value === "" && message.value === "" ){
+send.addEventListener('submit', () => {
+    if (user.value === '' && message.value === '') {
+        e.preventDefault();
         alert("Please fill out user and message fields before sending");
-    } else if ( user.value === "" ) {
-        alert("Please fill out user field before sending")
-    } else if ( message.value === "" ) {
-        alert("Please fill out message field before sending")
+    } else if (user.value === '') {
+        e.preventDefault();
+        alert("Please fill out user field before sending");
+    } else if (message.value === '') {
+        e.preventDefault();
+        alert("Please fill out message field before sending");
     } else {
-        alert(`Message successfully sent to: ${user.value}`);
+        e.preventDefault();
+        alert(`Message successfully sent to: ${under.value}`)
+        userInput.value = '';
+        message.value = '';
     }
-});
+ });
+
+ //auto-complete function
+ const namesDiv = document.querySelector('.names-list')
+ const userInput = document.getElementById('userField');
+
+ const namesArray = [
+    'Victoria Chambers',
+    'Dale Byrd',
+    'Dawn Wood',
+    'Dan Oliver',
+ ];
+
+ userInput.addEventListener('keyup', (e) =>{
+    namesDiv.innerHTML= "";
+    namesDiv.style.display = "block";
+    const ul = document.createElement("ul");
+    namesDiv.append(ul);
+    let search = e.target.value.toLowerCase();
+    if(search !== ""){
+        namesArray.forEach(name =>{
+            if(name.toLowerCase().includes(search)){
+                const li = document.createElement("li")
+                li.textContent = name;
+                ul.append(li);
+                li.addEventListener('click', (e) =>{
+                    userInput.value = li.textContent;
+                    namesDiv.style.display = "none";
+                });
+            }
+        })
+    }else{
+        namesDiv.textContent = "";
+        namesDiv.style.display = "none";
+    }
+})
+
+// add to local storage
+const btnSave = document.getElementById('save')
+const emailNotification = document.getElementById('email')
+const profile = document.getElementById('profile')
+const timezone = document.getElementById('timezone')
+
+
+
+
+btnSave.addEventListener('click', () =>{
+    localStorage.removeItem('toggleOne');
+    localStorage.removeItem('toggleTwo');
+    localStorage.removeItem('tz');
+    if(emailNotification.checked){    
+        localStorage.setItem('toggleOne', emailNotification.value)
+    }
+    if(profile.checked){
+        localStorage.setItem('toggleTwo', profile.value)
+    }
+    if(timezone.selectedIndex){
+        localStorage.setItem('tz', timezone.value)
+    }
+})
+
+
+//removes from local storage 
+const btnCancel = document.getElementById('cancel')
+
+
+btnCancel.addEventListener('click', () =>{
+    localStorage.removeItem('toggleOne');
+    localStorage.removeItem('toggleTwo');
+    localStorage.removeItem('tz');
+})
+
+
+//retrieves from local storage 
+const settingsToggleOne = localStorage.getItem('toggleOne')
+const settingsToggleTwo = localStorage.getItem('toggleTwo')
+const settingsTZ = localStorage.getItem('tz')
+
+//checks for local storage to display saved settings 
+const display = () => {
+    if(emailNotification.value === settingsToggleOne){
+        emailNotification.checked = true
+    }
+    if(profile.value === settingsToggleTwo){
+        profile.checked = true;
+    }
+    if(timezone.selectedIndex !== ''){
+        timezone.value = settingsTZ;
+    }
+    return;
+}
+display();
