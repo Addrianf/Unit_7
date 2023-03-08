@@ -338,8 +338,17 @@ section {
 .button-save,
 .button-disabled {
     height: 40px;
-    border-radius: 6px;
+    padding: 9px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
     color: white;
+    background-color: rgb(125, 126, 207);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+
 }
 
 .button-send {
@@ -352,12 +361,20 @@ section {
     background-color: rgb(125, 126, 207);
     margin-right: 10px;
 }
-
+.button-save:hover {
+    background: #5454b8;
+}
 .button-disabled {
     width: 50%;
     background-color: rgb(173, 173, 173);
 }
-
+.button-send:active,
+.button-save:active,
+.button-disabled:active {
+    background-color:  rgb(125, 126, 207);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
 /* ======= settings ======= */
 
 .settings-button {
@@ -606,7 +623,7 @@ input:checked::after {
     .search-icon{
         left: -2.5%;
     }
-    
+
     .names-list{
         margin-left: 35px;
         z-index: 1;
