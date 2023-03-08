@@ -316,6 +316,24 @@ section {
     height: 100px;
 }
 
+.names-list{
+    display: none;
+    background-color:whitesmoke;
+    position: absolute;
+    border: solid 1px lightgray;
+    display: none;
+    z-index: 1;
+    width: 95%;
+    margin-top: 50px;
+}
+.names-list ul li{
+    padding: 5px;
+   list-style-type: none;
+}
+.names-list ul li:hover{
+    background-color: lightblue;
+}
+
 .button-send,
 .button-save,
 .button-disabled {
@@ -456,6 +474,12 @@ input:checked::after {
         left: -3.5%;
     }
 
+    .names-list{
+        margin-right: 5px;
+        z-index: 1;
+        width: 88.5%;
+        margin-top: 50px;
+    }
 
     .navigation {
         display: grid;
@@ -581,6 +605,13 @@ input:checked::after {
     }
     .search-icon{
         left: -2.5%;
+    }
+    
+    .names-list{
+        margin-left: 35px;
+        z-index: 1;
+        width: 44.75%;
+        margin-top: 50px;
     }
 
     .traffic-header{
