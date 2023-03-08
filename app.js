@@ -21,12 +21,20 @@ bell.addEventListener('click', () => {
         bellMenuContainer.style.display = 'block';
         bellMenuContainer.innerHTML = 
             `<ul class="bellMenu">
-                <li>You have 6 unread messages<span>X</span></li>
-                <li>You have 4 new followers<span>X</span></li>
-                <li>Your password expires in 7 days<span>X</span></li>
-            </ul>`;
+                <li>You have 6 unread messages<span class = "bellMenu-container-close">X</span></li>
+                <li>You have 4 new followers<span class = "bellMenu-close">X</span></li>
+                <li>Your password expires in 7 days<span class = "bellMenu-close">X</span></li>
+            </ul>`
     }
-});
+    });
+
+    bellMenuContainer.addEventListener('click', e => {
+        const element = e.target;
+        if (element.classList.contains('bellMenu-container-close')) {
+            bellMenuContainer.style.display = "none"
+        }
+    });
+
 
 
 // -------- Traffic chart --------
