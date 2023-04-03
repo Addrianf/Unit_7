@@ -338,8 +338,9 @@ const mobileOptions = {
 const user = document.getElementById('userField');
 const message = document.getElementById('messageField');
 const send = document.getElementById('send');
+const userInput = document.getElementById('userField');
 
-send.addEventListener('submit', () => {
+send.addEventListener('submit', (e) => {
     if (user.value === '' && message.value === '') {
         e.preventDefault();
         alert("Please fill out user and message fields before sending");
@@ -359,7 +360,6 @@ send.addEventListener('submit', () => {
 
  //auto-complete function
  const namesDiv = document.querySelector('.names-list')
- const userInput = document.getElementById('userField');
 
  const namesArray = [
     'Victoria Chambers',
