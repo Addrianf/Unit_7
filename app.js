@@ -1,5 +1,19 @@
-// ----- Alert Banner ----------
 const alertBanner = document.getElementById('alert');
+const trafficCanvas = document.getElementById('traffic-chart');
+const dailyCanvas = document.getElementById('daily-chart');
+const mobileCanvas = document.getElementById('mobile-chart');
+const user = document.getElementById('userField');
+const message = document.getElementById('messageField');
+const send = document.getElementById('send');
+const userInput = document.getElementById('userField');
+const btnSave = document.getElementById('save')
+const emailNotification = document.getElementById('email')
+const profile = document.getElementById('profile')
+const timezone = document.getElementById('timezone')
+const btnCancel = document.getElementById('cancel')
+
+// ----- Alert Banner ----------
+
 
 alertBanner.innerHTML = `<p><strong>Alert:</strong> You Have unread message</p><p class="alert-banner-close">x</p>`;
 
@@ -38,9 +52,6 @@ bell.addEventListener('click', () => {
 
 
 // -------- Traffic chart --------
-
-const trafficCanvas = document.getElementById('traffic-chart');
-
 let trafficData = {
     labels: ["16-22", "23-29", "30-5", "6-12", "13-19", "20-26", "27-3", "4-10", "11-17", "18-24", "25-31"],
     datasets: [{
@@ -266,8 +277,6 @@ monthly.addEventListener('click', (e) => {
 // })
 
 // ---------- Daily chart ----------
-const dailyCanvas = document.getElementById('daily-chart');
-
 const dailyData = {
     labels: ["S", "M", "T", "W", "T", "F", "S"],
     datasets: [{
@@ -298,8 +307,6 @@ let dailyChart = new Chart(dailyCanvas, {
 });
 
 // ---------- mobile chart ----------
-const mobileCanvas = document.getElementById('mobile-chart');
-
 const mobileData = {
     labels: ["Desktop", "Tablets", "Phones"],
     datasets: [{
@@ -335,11 +342,6 @@ const mobileOptions = {
 
 
 // ------------------ messaging section ------------------
-const user = document.getElementById('userField');
-const message = document.getElementById('messageField');
-const send = document.getElementById('send');
-const userInput = document.getElementById('userField');
-
 send.addEventListener('submit', (e) => {
     if (user.value === '' && message.value === '') {
         e.preventDefault();
@@ -352,9 +354,8 @@ send.addEventListener('submit', (e) => {
         alert("Please fill out message field before sending");
     } else {
         e.preventDefault();
-        alert(`Message successfully sent to: ${under.value}`)
-        userInput.value = '';
-        message.value = '';
+        alert(`Message successfully sent to: ${user.value}`)
+        
     }
  });
 
@@ -393,14 +394,6 @@ send.addEventListener('submit', (e) => {
 })
 
 // add to local storage
-const btnSave = document.getElementById('save')
-const emailNotification = document.getElementById('email')
-const profile = document.getElementById('profile')
-const timezone = document.getElementById('timezone')
-
-
-
-
 btnSave.addEventListener('click', () =>{
     localStorage.removeItem('toggleOne');
     localStorage.removeItem('toggleTwo');
@@ -418,9 +411,6 @@ btnSave.addEventListener('click', () =>{
 
 
 //removes from local storage 
-const btnCancel = document.getElementById('cancel')
-
-
 btnCancel.addEventListener('click', () =>{
     localStorage.removeItem('toggleOne');
     localStorage.removeItem('toggleTwo');
