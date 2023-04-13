@@ -355,6 +355,8 @@ send.addEventListener('submit', (e) => {
     } else {
         e.preventDefault();
         alert(`Message successfully sent to: ${user.value}`)
+        user.value= "";
+        message.value = "";
         
     }
  });
